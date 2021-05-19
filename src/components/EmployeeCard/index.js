@@ -3,7 +3,7 @@ import "./style.css";
 
 function EmployeeCard(props) {
   return (
-    <tr>
+    <tr id="employee-card">
       <td>
       <img alt={props.name} src={props.image} />
       </td>
@@ -17,30 +17,9 @@ function EmployeeCard(props) {
        {props.email}
       </td>
       <td>
-        {props.dob.date}
+        {props.dob}
       </td>
     </tr>
-    // <div className="card">
-    //   <div className="img-container">
-    //     <img alt={props.name} src={props.image} />
-    //   </div>
-    //   <div className="content">
-    //     <ul>
-    //       <li>
-    //         <strong>Name:</strong> {props.name}
-    //       </li>
-    //       <li>
-    //         <strong>Phone:</strong> {props.phone}
-    //       </li>
-    //       <li>
-    //         <strong>Email:</strong> {props.email}
-    //       </li>
-    //       <li>
-    //         <strong>DOB:</strong> {props.email}
-    //       </li>
-    //     </ul>
-    //   </div>
-    // </div>
   );
 }
 
