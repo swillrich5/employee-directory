@@ -14,14 +14,17 @@ class App extends Component {
 
   state = {
     employees: [],
-    searchField: ""
+    filteredEmployees: [],
+    nonFilteredEmployees: [],
+    searchField: "",
+    currentSort: 'default'
   }
 
-      // When this component mounts, search the Giphy API for pictures of kittens
-      componentDidMount() {
-        console.log("I'm in componentDidMount()");
-        this.getEmployees();
-      }
+  // When this component mounts, search the Giphy API for pictures of kittens
+  componentDidMount() {
+    console.log("I'm in componentDidMount()");
+    this.getEmployees();
+  }
 
   getEmployees = () => {
     console.log("I'm in getEmployees()");
@@ -30,28 +33,31 @@ class App extends Component {
     .then( res => {
       const employees = res.data.results;
       console.log(employees);
-      this.setState({employees});
-    })
+      const nonFilteredEmployees = employees;
+      this.setState({employees, nonFilteredEmployees});
+     })
     .catch(err => console.log(err));
   }
 
-  filterBySearch = event => {
+  filterBySearch = (event) => {
     const { name, value } = event.target;
     console.log("name = " + name);
     console.log("value = " + value);
-    console.log(this.state.employees);
-    // const employees = this.state.employees.filter(employee => employee.name.last.toLowerCase().includes(value.toLowerCase()));
-    const employees = this.state.employees.map(employee => {
-      if (!employee.name.last.toLowerCase().includes(value.toLowerCase)) {
-        document.querySelector("#employee-card").visibility = "hidden";
-      }
-      else {
-        document.querySelector("#employee-card").visibility = "visible";
-      }
-      return(employee);
-    });
 
-    this.setState({employees, [name]: value});
+    console.log(this.state.nonFilteredEmployees);
+    const employees = this.state.nonFilteredEmployees.filter(employee => employee.name.last.toLowerCase().includes(value.toLowerCase()));
+    // const employees = this.state.employees.map(employee => {
+    //   if (!employee.name.last.toLowerCase().includes(value.toLowerCase)) {
+    //     document.querySelector("#employee-card").visibility = "hidden";
+    //   }
+    //   else {
+    //     document.querySelector("#employee-card").visibility = "visible";
+    //   }
+    //   return(employee);
+    // });
+  
+
+    this.setState({ employees, [name]: value});
     // this.setState({[name]: value});
   }
     
@@ -63,6 +69,42 @@ class App extends Component {
       searchField: ""
     });
   };
+
+  sortFunction = (a, b) => {
+    let fa = a.name.last;
+    let fb = b.name.last;
+
+    if (fa < fb) {
+      return -1;
+    }
+    if (fa > fb) {
+      return 1;      
+    }
+
+    return 0;
+  }
+
+  sortByName = () => {
+    // const { currentSort, employees } = this.state;
+    console.log(this.state.currentSort);
+    console.log(this.state.employees);
+    if (this.state.currentSort === 'default') {
+      // const employees = this.state.employees.sort(this.state.employees.last);
+      const employees = [].concat(this.state.employees)
+        .sort((a, b) => a.name.last > b.name.last ? 1 : -1);
+
+      const currentSort = 'ascending';
+      this.setState({ currentSort, employees });
+    } else if (this.state.currentSort === 'ascending') {
+      const employees = this.state.employees.reverse();
+      const currentSort = 'descending';
+      this.setState({ currentSort, employees });
+    } else {
+      const employees = this.state.employees.reverse();
+      const currentSort = 'ascending';
+      this.setState({ currentSort, employees });
+    }
+  }
 
 
   render() {
@@ -84,27 +126,28 @@ class App extends Component {
           />
         </div>
         <table className="table table-striped">
-        <thead className="text-center">
+        <thead className="text-center align-center">
           <tr>
-            <th scope="col">Image</th>
-            <th scope="col">Name</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Email</th>
-            <th scope="col">DOB</th>
+            <th scope="col"><button type="button" className="btn bg-transparent" >Image</button></th>
+            <th scope="col"><button type="button" className="btn bg-transparent" onClick={() => this.sortByName()}>Name</button></th>
+            <th scope="col"><button type="button" className="btn bg-transparent ">Phone</button></th>
+            <th scope="col"><button type="button" className="btn bg-transparent ">Email</button></th>
+            <th scope="col"><button type="button" className="btn bg-transparent ">DOB</button></th>
           </tr>
         </thead>
         <tbody>
           {this.state.employees.map(employee => 
-                <EmployeeCard
-                  // searchEmployees={this.searchEmployees}
-                  id={employee.id.value}
-                  key={employee.id.value}
-                  image={employee.picture.medium}
-                  name={employee.name.last + ', ' + employee.name.first}
-                  email={employee.email}
-                  dob={new Date(employee.dob.date.substring(0, 9)).toLocaleDateString('en-US')}                  
-                  phone={employee.phone}
-                />
+              <EmployeeCard
+                // searchEmployees={this.searchEmployees}
+                id={employee.id.value}
+                key={employee.id.value}
+                image={employee.picture.medium}
+                name={employee.name.last + ', ' + employee.name.first}
+                email={employee.email}
+                dob={new Date(employee.dob.date.substring(0, 9)).toLocaleDateString('en-US')}                  
+                phone={employee.phone}
+                hidden={false}
+              />
           )}
         </tbody>
 
@@ -114,14 +157,5 @@ class App extends Component {
     )
   }
 }
-
-// function App() {
-//   return (
-//     <div className="container-fluid">
-//         <Title />
-//     </div>
-
-//   );
-// }
 
 export default App;
