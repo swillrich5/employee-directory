@@ -37,18 +37,33 @@ class App extends Component {
     return(
       <Wrapper>
         <Title>Employee Directory</Title>
+        <table className="table table-striped">
+        <thead className="text-center">
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">DOB</th>
+          </tr>
+        </thead>
+        <tbody>
           {this.state.employees.map(employee => 
-            <EmployeeCard
-                // searchEmployees={this.searchEmployees}
-                id={employee.id.value}
-                key={employee.id.value}
-                image={employee.picture.medium}
-                name={employee.name.last + ', ' + employee.name.first}
-                email={employee.email}
-                dob={employee.dob}
-                phone={employee.phone}
-            />
+                <EmployeeCard
+                  // searchEmployees={this.searchEmployees}
+                  id={employee.id.value}
+                  key={employee.id.value}
+                  image={employee.picture.medium}
+                  name={employee.name.last + ', ' + employee.name.first}
+                  email={employee.email}
+                  dob={employee.dob}
+                  phone={employee.phone}
+                />
           )}
+        </tbody>
+
+        </table>
+
       </Wrapper>
     )
   }
