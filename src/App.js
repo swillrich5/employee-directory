@@ -3,12 +3,7 @@ import axios from "axios";
 import EmployeeCard from "./components/EmployeeCard";
 import Wrapper from "./components/Wrapper";
 import Title from './components/Title/title.js';
-import SearchForm from "./components/SearchForm";
 import './App.css';
-
-// const formatDate = dob => {
-//   return dob.toLocaleDateString();
-// }
 
 class App extends Component {
 
@@ -32,7 +27,7 @@ class App extends Component {
     axios.get(URL)
     .then( res => {
       const employees = res.data.results;
-      console.log(employees);
+      // console.log(employees);
       const nonFilteredEmployees = employees;
       this.setState({employees, nonFilteredEmployees});
      })
@@ -41,23 +36,13 @@ class App extends Component {
 
   filterBySearch = (event) => {
     const { name, value } = event.target;
-    console.log("name = " + name);
-    console.log("value = " + value);
+    // console.log("name = " + name);
+    // console.log("value = " + value);
 
     console.log(this.state.nonFilteredEmployees);
     const employees = this.state.nonFilteredEmployees.filter(employee => employee.name.last.toLowerCase().includes(value.toLowerCase()));
-    // const employees = this.state.employees.map(employee => {
-    //   if (!employee.name.last.toLowerCase().includes(value.toLowerCase)) {
-    //     document.querySelector("#employee-card").visibility = "hidden";
-    //   }
-    //   else {
-    //     document.querySelector("#employee-card").visibility = "visible";
-    //   }
-    //   return(employee);
-    // });
-  
 
-    this.setState({ employees, [name]: value});
+    this.setState({ employees, [name]: value, currentSort: 'default'});
     // this.setState({[name]: value});
   }
     
@@ -111,11 +96,8 @@ class App extends Component {
     return(
       <Wrapper>
         <Title>Employee Directory</Title>
-        {/* <SearchForm 
-          employees={this.state.employees}
-          handleInputChange={this.handleInputChange}
-        /> */}
-        <div className="col-8 align-items-center mx-auto">
+        
+        <div className="align-items-center mx-auto">
           <input 
             value={this.state.searchField}
             id="search-field"
@@ -129,10 +111,16 @@ class App extends Component {
         <thead className="text-center align-center">
           <tr>
             <th scope="col"><button type="button" className="btn bg-transparent" >Image</button></th>
-            <th scope="col"><button type="button" className="btn bg-transparent" onClick={() => this.sortByName()}>Name</button></th>
+            <th scope="col"><button id="name-sort" type="button" className="btn bg-transparent" onClick={() => this.sortByName()}>Name</button></th>
             <th scope="col"><button type="button" className="btn bg-transparent ">Phone</button></th>
             <th scope="col"><button type="button" className="btn bg-transparent ">Email</button></th>
             <th scope="col"><button type="button" className="btn bg-transparent ">DOB</button></th>
+
+            {/* <th scope="col">Image</th>
+            <th id="name-sort" scope="col"><a href="true" onClick={() => this.sortByName()}>Name</a></th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">DOB</th> */}
           </tr>
         </thead>
         <tbody>
@@ -144,7 +132,7 @@ class App extends Component {
                 image={employee.picture.medium}
                 name={employee.name.last + ', ' + employee.name.first}
                 email={employee.email}
-                dob={new Date(employee.dob.date.substring(0, 9)).toLocaleDateString('en-US')}                  
+                dob={new Date(employee.dob.date).toLocaleDateString('en-US')}                  
                 phone={employee.phone}
                 hidden={false}
               />

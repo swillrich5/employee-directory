@@ -37,6 +37,38 @@
   }
 }
 
-button {
+.btn:focus {
   outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.btn:blur {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.btn {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+a:link {
+    text-decoration: none;
+    color: darkslategray;
+}
+
+a:hover {
+    text-decoration: none;
+    color: darkslategray;
+}  
+
+a {
+  color: inherit;
+}
+
+#name-sort {
+  font-weight: bold;
 }
