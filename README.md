@@ -8,8 +8,7 @@ employee-directory is an application that allows the user to view an organizatio
 
 ## Deployed Application
 
-https://secure-crag-36323.herokuapp.com/
-
+https://scott-employee-directory.herokuapp.com/
 ---
 
 ## GitHub Repository
