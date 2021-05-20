@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# employee-directory
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+employee-directory is an application that allows the user to view an organization's employees.  Employees can be sorted and searched by last name.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Deployed Application
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+https://secure-crag-36323.herokuapp.com/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## GitHub Repository
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+https://github.com/swillrich5/employee-directory
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Table of Contents
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* [Installation](#installation)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* [Usage](#usage)
 
-### `npm run eject`
+* [Technology](#technology)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* [Application Images](#Application-Images)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* [License](#license)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* [Contributing](#Contributing)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* [Questions](#Questions)
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Installation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+If you wish to run your own copy of the application, please clone the repo and install the required node modules by running:
 
-### Code Splitting
+```
+npm i
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+After installing the required npm modules and creating the database, the application can be started and run locally by entering:
 
-### Making a Progressive Web App
+```
+npm start
+```
+from the command line.  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Technology
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The following technology was used to build note-taker:
 
-### Deployment
+  * express - https://www.npmjs.com/package/express
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  * node - https://nodejs.org/en/
 
-### `npm run build` fails to minify
+  * react - https://www.npmjs.com/package/react
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  * Bootstrap v4.6 - https://getbootstrap.com/docs/4.6/getting-started/introduction/
+
+---
+
+## Application-Image
+![Screenshot](./images/employee-directory.png "Screenshot")
+
+---
+
+
+## License
+
+None
+
+---
+
+## Contributing
+
+Please report any issues using my contact information below.
+
+---
+
+## Questions
+
+GitHub Profile: https://github.com/swillrich5
+
+Email Address: swillrich@gmail.com
